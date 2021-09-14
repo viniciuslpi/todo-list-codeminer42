@@ -1,1 +1,3 @@
-# todo-list-imersao-codeminer42
+# ToDo List for Imersão Codeminer42
+
+Primeiro desafio Imersão Codeminer42
