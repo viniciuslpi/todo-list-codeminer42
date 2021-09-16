@@ -66,8 +66,10 @@ const clickItem = (evento) => {
 
 if(window.location.href === "http://127.0.0.1:5501/add-todos.html"){
     document.getElementById('newItem').addEventListener('keypress', inserirItem);
-    document.getElementById('todoList').addEventListener('click', clickItem);
 }
+
+document.getElementById('todoList').addEventListener('click', clickItem);
+
 
 atualizarTela();
 
