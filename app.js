@@ -1,5 +1,8 @@
 'use strict';
 
+
+/* TODA A PARTE DE JAVASCRIPT FOI RETIRADA DE MATERIAIS NO YOUTUBE, EU NÃO CONSEGUI REALIZAR ESSA PARTE. */
+
 const getBanco = () => JSON.parse(localStorage.getItem('todoList')) ?? [];
 const setBanco = (banco) => localStorage.setItem('todoList', JSON.stringify(banco));
 
