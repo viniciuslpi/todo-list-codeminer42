@@ -7,23 +7,15 @@
 
     <title>ToDo List</title>
     <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
-    <link href="icomoon/style.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/CSS/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/CSS/add-style.css">
-
-    <script>
-
-     
-    </script>
-
-
+    <link rel="stylesheet" type="text/css" href="/CSS/index-style.css">
 </head>
 
 <body>
 
     <header class="top-header">
         <div class="maxwidth">
-            <h1>ToDo List</h1>
+            <h1>Imersão Codeminer42</h1>
             <nav class="top-nav">
                 <ul>
                     <li> <a href="index.html">Home</a></li>
@@ -35,20 +27,15 @@
     </header>
 
     <main>
-        <div class="action-block">
+        <section class="action-block">
             <h2>Add ToDos</h2>
-            <input type="text" id="myInput" placeholder="Write your tasks...">
-            <input id="date" type="date">
-            <span onclick="newTask()" class="addBtn">Add</span>
-
-            <ul id="myUL">
-
-
-            </ul>
-        </div>
+            <div class="todo__new-item">
+                <input type="text" id="newItem" placeholder="Write your task and press 'Enter' to send.">
+            </div>
+            <div class="todo__list" id="todoList"></div>
+        </section>
     </main>
-
-
+    <script src="app.js"></script>
 
 </body>
 

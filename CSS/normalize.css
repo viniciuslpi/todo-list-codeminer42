@@ -22,9 +22,7 @@ ul, a{
   list-style: none;
   text-decoration: none;
   color: #c9d1d9;
-
 }
-
 
 /* Sections
    ========================================================================== */
@@ -38,11 +36,14 @@ ul, a{
 }
 
 .top-nav a{
-    color: white;
+    color: #c9d1d9;
     padding: 1em;
     display: block;
     border-radius: 15px;
     margin: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 .top-nav a:hover{
     background-color: teal;
@@ -61,19 +62,9 @@ ul, a{
   
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+h2{
+  text-align: center;
+}
 
 
 /**
