@@ -1,5 +1,6 @@
 var arr = new Array();
 
+<<<<<<< HEAD
 function adicionarItem() {
     var item = document.getElementById("item").value;
     var deadline = document.getElementById("deadline").value;
@@ -15,6 +16,13 @@ function adicionarItem() {
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
         var cell5 = row.insertCell(4);
+=======
+
+/* TODA A PARTE DE JAVASCRIPT FOI RETIRADA DE MATERIAIS NO YOUTUBE, EU NÃO CONSEGUI REALIZAR ESSA PARTE. */
+
+const getBanco = () => JSON.parse(localStorage.getItem('todoList')) ?? [];
+const setBanco = (banco) => localStorage.setItem('todoList', JSON.stringify(banco));
+>>>>>>> 558ea7f1b974405a898caf1fbe8447a7afa6010e
 
         cell1.innerHTML = "<input type='checkbox'>";
         cell2.innerHTML = item;
