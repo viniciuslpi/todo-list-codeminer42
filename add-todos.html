@@ -30,9 +30,26 @@
         <section class="action-block">
             <h2>Add ToDos</h2>
             <div class="todo__new-item">
-                <input type="text" id="newItem" placeholder="Write your task and press 'Enter' to send.">
+                <input type="text" id="item" placeholder="Write your tasks..." />
+                <input id="deadline" type="date">
+                <button onclick="adicionarItem()">Add</button>
             </div>
-            <div class="todo__list" id="todoList"></div>
+            <div class="list-title">
+                <table>
+                    <tr id="table-style">
+                      <th>Check</th>
+                      <th>Description</th>
+                      <th>DeadLine</th>
+                      <th>Data</th>
+                      <th>Delete</th>
+                    </tr>
+                  </table>
+            </div>
+            <div>
+                <table id="lista">
+                   
+                  </table>
+            </div>
         </section>
     </main>
     <script src="app.js"></script>

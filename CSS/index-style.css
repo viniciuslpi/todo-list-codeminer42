@@ -1,3 +1,22 @@
+#lista{
+    width: 100%;
+}
+
+#lista tr{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 0;
+    border-radius: 20px;
+}
+
+#list-title tr{
+    border: red solid 2px;
+    display: flex;
+    justify-content: space-between;
+}   
+
 .action-button{
     display: flex;
     align-items: center;
@@ -14,12 +33,6 @@
     background-color: teal;
 }
 
-.todo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-}
 
 .todo__list {
     display: flex;
@@ -46,21 +59,21 @@
 }
 
 
-.todo__item > input[type='text'] {
+.lista > input[type='text'] {
     border: none;
     width: 80%;
 
 }
 
-.todo__item > input[type='button'],
-.todo__item > input[type='checkbox'] {
+.lista > input[type='button'],
+.lista > input[type='checkbox'] {
     width: 30px;
     height: 30px;
     border-radius: 10px;
 }
 
 
-.todo__item > input[type='checkbox']:checked  + div {
+.lista > input[type='checkbox']:checked  + div {
     text-decoration:line-through;
 }
 
@@ -68,7 +81,6 @@
     display: flex;
     width: 100%;
     height: 45px;
-    justify-content: space-evenly;
     padding-bottom: 10px;
     margin: 10px;
 }
@@ -80,5 +92,7 @@
     padding-left: 15px;
     
 }
+
+
 
 

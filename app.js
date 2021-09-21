@@ -1,77 +1,58 @@
-'use strict';
+var arr = new Array();
 
-const getBanco = () => JSON.parse(localStorage.getItem('todoList')) ?? [];
-const setBanco = (banco) => localStorage.setItem('todoList', JSON.stringify(banco));
+function adicionarItem() {
+    var item = document.getElementById("item").value;
+    var deadline = document.getElementById("deadline").value;
+    
+    if(item === '' || deadline.value == ''){
+        alert('Error message.');
+    }else{
+        var lista  = document.getElementById("lista");
+        
+        var row = lista.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
 
-const criarItem = (tarefa, status, indice) => {
-    const item = document.createElement('label');
-    item.classList.add('todo__item');
-    item.innerHTML = `
-        <input type="checkbox" ${status} data-indice=${indice}>
-        <div>${tarefa}</div>
-        <input type="button" value="X" data-indice=${indice}></input>
-    `;
-    document.getElementById('todoList').appendChild(item);    
+        cell1.innerHTML = "<input type='checkbox'>";
+        cell2.innerHTML = item;
+        cell3.innerHTML = deadline;
+        cell4.innerHTML = mostraData();
+        cell5.innerHTML = "<input type='button' value='X' onclick='deletarItem(item)'></input>";
+        
+        adicionarBanco();
+        mostraLista();
+        limpaLista();
+    }  
 }
 
-const limparTarefas = () => {
-    const todoList = document.getElementById('todoList');
-    while(todoList.firstChild){
-        todoList.removeChild(todoList.lastChild);
-    }
+
+function adicionarBanco(){
+    console.log("Adicionar itens ao banco local")
 }
 
-const atualizarTela = () => {
-    limparTarefas(); 
-    const banco = getBanco();
-    banco.forEach((item, indice) => criarItem(item.tarefa, item.status, indice));
+function mostraLista(){
+    console.log("Mostrar itens da lista");
 }
 
-const inserirItem = (evento) => {
-    const tecla = evento.key;
-    const texto = evento.target.value;
-    if(tecla === 'Enter'){
-        const banco = getBanco();
-        banco.push({'tarefa': texto, 'status': ''});
-        setBanco(banco);
-        atualizarTela();
-        evento.target.value = '';
-    }
+function limpaLista(){
+    document.getElementById('item').value='';
+    document.getElementById('deadline').value='';
+
 }
 
-const removerItem = (indice) => {
-    const banco = getBanco();
-    banco.splice(indice, 1);
-    setBanco(banco);
-    atualizarTela();
+function mostraData(){
+    var data = new Date(),
+        dia  = data.getDate().toString(),
+        diaF = (dia.length == 1) ? '0'+dia : dia,
+        mes  = (data.getMonth()+1).toString(), 
+        mesF = (mes.length == 1) ? '0'+mes : mes,
+        anoF = data.getFullYear();   
+    return anoF+"-"+mesF+"-"+diaF;
 }
 
-const atualizarItem = (indice) => {
-    const banco = getBanco();
-    banco[indice].status = banco[indice].status === '' ? 'checked' : '';
-    setBanco(banco);
-    atualizarTela();
+function deletarItem(item){
+    document.getElementById("lista").deleteRow(item.row)
 }
-
-const clickItem = (evento) => {
-    const elemento = evento.target;
-    if(elemento.type === 'button'){
-        const indice = elemento.dataset.indice;
-        removerItem(indice);
-    }else if(elemento.type === 'checkbox'){
-        const indice = elemento.dataset.indice;
-        atualizarItem(indice);
-    }
-}
-
-if(window.location.href === "http://127.0.0.1:5501/add-todos.html"){
-    document.getElementById('newItem').addEventListener('keypress', inserirItem);
-}
-
-document.getElementById('todoList').addEventListener('click', clickItem);
-
-
-atualizarTela();
-
-
-
