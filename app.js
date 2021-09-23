@@ -5,7 +5,6 @@ function adicionarItem() {
     if(item === '' || deadline.value == ''){
         alert('Error message.');
     }else{
-        
         var lista  = document.getElementById("lista");
         var row = lista.insertRow(0);
         var cell1 = row.insertCell(0);
@@ -21,7 +20,6 @@ function adicionarItem() {
         cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + item + '\')"/>';
 
         salvarDadosLocalStorage(item, deadline);
-        mostraLista();
         limpaLista();
     }  
 }
@@ -43,14 +41,15 @@ function mostraData(){
 
 function deletarItem(item){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
-    for(tasks of arrayTasks){
-        if(tasks.description == item){
-            console.log(tasks.description)
-            arrayTasks.splice(task.description, 1);
+   
+    for(var i=0; i<arrayTasks.length;i++){
+        if(arrayTasks[i].description == item){
+            arrayTasks.splice(i, 1); 
         }
     }
+
     window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
-    document.getElementById("lista").deleteRow(item.row);
+    document.getElementById("").deleteRow(item);
 }
 
 function salvarDadosLocalStorage(item, data){
@@ -68,22 +67,21 @@ function salvarDadosLocalStorage(item, data){
 
 function recuperarDadosLocalStorage(){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
-
-	for(task of arrayTasks){
-        var lista  = document.getElementById("lista");
-        var row = lista.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-
-        cell1.innerHTML = "<input type='checkbox'>";
-        cell2.innerHTML = task.description;
-        cell3.innerHTML = task.deadline;
-        cell4.innerHTML = "mostradata";
-        cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + task.description + '\')"/>';
-	}
+        for(task of arrayTasks){
+            var lista = document.getElementById("lista");
+            var row   = lista.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+    
+            cell1.innerHTML = "<input type='checkbox'>";
+            cell2.innerHTML = task.description;
+            cell3.innerHTML = task.deadline;
+            cell4.innerHTML = "NULL";
+            cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + task.description + '\')"/>';
+        }
 }
 
 recuperarDadosLocalStorage();
