@@ -1,5 +1,3 @@
-var arr = new Array();
-
 function adicionarItem() {
     let item = document.getElementById("item").value;
     let deadline = document.getElementById("deadline").value;
@@ -20,16 +18,12 @@ function adicionarItem() {
         cell2.innerHTML = item;
         cell3.innerHTML = deadline;
         cell4.innerHTML = mostraData();
-        cell5.innerHTML = "<input type='button' value='X' onclick='deletarItem(item)'></input>";
+        cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + item + '\')"/>';
 
         salvarDadosLocalStorage(item, deadline);
         mostraLista();
         limpaLista();
     }  
-}
-
-function mostraLista(){
-
 }
 
 function limpaLista(){
@@ -49,17 +43,13 @@ function mostraData(){
 
 function deletarItem(item){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
-    console.log(item.value)
-    for(var i = 0; i< arrayTasks.length; i++){
-        if(arrayTasks[i].description === item){
-            arrayTasks.splice(arrayTasks[i], 1)
+    for(tasks of arrayTasks){
+        if(tasks.description == item){
+            console.log(tasks.description)
+            arrayTasks.splice(task.description, 1);
         }
     }
-    
-    arrayTasks.splice('item', 1);
-    
-    console.log(arrayTasks)
-    
+    window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
     document.getElementById("lista").deleteRow(item.row);
 }
 
@@ -92,9 +82,8 @@ function recuperarDadosLocalStorage(){
         cell2.innerHTML = task.description;
         cell3.innerHTML = task.deadline;
         cell4.innerHTML = "mostradata";
-        cell5.innerHTML = "<input type='button' value='X' onclick='deletarItem(item)'></input>";
+        cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + task.description + '\')"/>';
 	}
 }
-
 
 recuperarDadosLocalStorage();
