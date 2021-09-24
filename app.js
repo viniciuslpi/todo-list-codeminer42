@@ -1,6 +1,7 @@
 function adicionarItem() {
-    let item = document.getElementById("item").value;
-    let deadline = document.getElementById("deadline").value;
+    let item        = document.getElementById("item").value;
+    let deadline    = document.getElementById("deadline").value;
+    let data        = geradorData();
 
     if(item === '' || deadline.value == ''){
         alert('Error message.');
@@ -16,10 +17,10 @@ function adicionarItem() {
         cell1.innerHTML = "<input type='checkbox'>";
         cell2.innerHTML = item;
         cell3.innerHTML = deadline;
-        cell4.innerHTML = mostraData();
+        cell4.innerHTML = data;
         cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + item + '\')"/>';
 
-        salvarDadosLocalStorage(item, deadline);
+        salvarDadosLocalStorage(item, deadline, data);
         limpaLista();
     }  
 }
@@ -29,7 +30,7 @@ function limpaLista(){
     document.getElementById('deadline').value='';
 }
 
-function mostraData(){
+function geradorData(){
     var data = new Date(),
         dia  = data.getDate().toString(),
         diaF = (dia.length == 1) ? '0'+dia : dia,
@@ -47,19 +48,21 @@ function deletarItem(item){
             arrayTasks.splice(i, 1); 
         }
     }
-
+    
     window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
-    document.getElementById("").deleteRow(item);
+    document.getElementById("lista").deleteRow(item);
 }
 
-function salvarDadosLocalStorage(item, data){
+function salvarDadosLocalStorage(item, deadline, data){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
 
 	if(!arrayTasks) arrayTasks = []; //Inicializando o vetor se ele vier vazio do local Storage
 
-	let objTask = {description: "", deadline: ""};
+	let objTask = {description: "", deadline: "", data: ""};
+
 	objTask.description = item;
-	objTask.deadline = data;
+	objTask.deadline    = deadline;
+    objTask.data        = data;
 
 	arrayTasks.push(objTask);
 	window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
@@ -79,7 +82,7 @@ function recuperarDadosLocalStorage(){
             cell1.innerHTML = "<input type='checkbox'>";
             cell2.innerHTML = task.description;
             cell3.innerHTML = task.deadline;
-            cell4.innerHTML = "NULL";
+            cell4.innerHTML = task.data;
             cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + task.description + '\')"/>';
         }
 }
