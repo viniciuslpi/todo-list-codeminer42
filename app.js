@@ -6,6 +6,8 @@ function adicionarItem() {
     if(item === '' || deadline.value == ''){
         alert('Error message.');
     }else{
+
+        /*
         var lista  = document.getElementById("lista");
         var row = lista.insertRow(0);
         var cell1 = row.insertCell(0);
@@ -19,9 +21,11 @@ function adicionarItem() {
         cell3.innerHTML = deadline;
         cell4.innerHTML = data;
         cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + item + '\')"/>';
-
+        */
+       
         salvarDadosLocalStorage(item, deadline, data);
         limpaLista();
+        location.reload();
     }  
 }
 
@@ -49,8 +53,9 @@ function deletarItem(item){
         }
     }
     
+    location.reload();
     window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
-    document.getElementById("lista").deleteRow(item);
+    //document.getElementById("lista").deleteRow(item);
 }
 
 function salvarDadosLocalStorage(item, deadline, data){
@@ -88,3 +93,4 @@ function recuperarDadosLocalStorage(){
 }
 
 recuperarDadosLocalStorage();
+
