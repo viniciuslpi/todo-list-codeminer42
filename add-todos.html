@@ -30,7 +30,7 @@
         <section class="action-block">
             <h2>Add ToDos</h2>
             <div class="todo__new-item">
-                <input type="text" id="item" placeholder="Write your tasks..." />
+                <input type="text" id="item" placeholder="Write your tasks...">
                 <input id="deadline" type="date">
                 <button onclick="adicionarItem()">Add</button>
             </div>
@@ -47,6 +47,11 @@
             </div>
             <div>
                 <table id="lista"></table>
+                <section class="footer-task">
+                    <div id="button-block">
+                        <input type="button" value="Delete all" onclick="deletarTodos()">
+                    </div>
+                </section>
             </div>
         </section>
     </main>

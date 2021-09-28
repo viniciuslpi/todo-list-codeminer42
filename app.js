@@ -4,25 +4,8 @@ function adicionarItem() {
     let data        = geradorData();
 
     if(item === '' || deadline.value == ''){
-        alert('Error message.');
-    }else{
-
-        /*
-        var lista  = document.getElementById("lista");
-        var row = lista.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-
-        cell1.innerHTML = "<input type='checkbox'>";
-        cell2.innerHTML = item;
-        cell3.innerHTML = deadline;
-        cell4.innerHTML = data;
-        cell5.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + item + '\')"/>';
-        */
-       
+        alert('Fill in all fields that are blank');
+    }else{       
         salvarDadosLocalStorage(item, deadline, data);
         limpaLista();
         location.reload();
@@ -47,16 +30,30 @@ function geradorData(){
 function deletarItem(item){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
    
-    for(var i=0; i<arrayTasks.length;i++){
-        if(arrayTasks[i].description == item){
-            arrayTasks.splice(i, 1); 
+    if(confirm("Do you really want to delete this task?")){
+        for(var i=0; i<arrayTasks.length;i++){
+            if(arrayTasks[i].description == item){
+                arrayTasks.splice(i, 1); 
+            }
         }
+        
+        location.reload();
+        window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
+    }    
+}
+
+function deletarTodos(){
+    let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
+
+    if(confirm("Do you really want to delete all tasks?")){
+        arrayTasks.splice(0, arrayTasks.length);         
     }
-    
     location.reload();
     window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
-    //document.getElementById("lista").deleteRow(item);
-}
+}    
+
+
+
 
 function salvarDadosLocalStorage(item, deadline, data){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
