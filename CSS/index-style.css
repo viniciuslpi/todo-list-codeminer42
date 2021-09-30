@@ -23,6 +23,7 @@ table{
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 2px;
+    text-decoration: none;
 }
 
 .top-nav a:hover{
@@ -90,6 +91,10 @@ table{
     margin-bottom: 10px;
     border-radius: 15px;
     color: #c9d1d9;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
 }
 
 .action-button:hover{

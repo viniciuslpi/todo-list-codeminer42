@@ -24,7 +24,7 @@ function geradorData(){
         mes  = (data.getMonth()+1).toString(), 
         mesF = (mes.length == 1) ? '0'+mes : mes,
         anoF = data.getFullYear();   
-    return anoF+"-"+mesF+"-"+diaF;
+    return `${anoF}-${mesF}-${diaF}`;
 }
 
 function deletarItem(item){
@@ -38,8 +38,12 @@ function deletarItem(item){
         }
         
         location.reload();
-        window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
+        storage('tasks', arrayTasks);
     }    
+}
+
+function storage(key, value){
+    window.localStorage.setItem(key, JSON.stringify(value));
 }
 
 function deletarTodos(){
@@ -49,25 +53,22 @@ function deletarTodos(){
         arrayTasks.splice(0, arrayTasks.length);         
     }
     location.reload();
-    window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
+    storage('tasks', arrayTasks);
 }    
 
-
-
-
-function salvarDadosLocalStorage(item, deadline, data){
+function salvarDadosLocalStorage(description, deadline, data){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
 
 	if(!arrayTasks) arrayTasks = []; //Inicializando o vetor se ele vier vazio do local Storage
 
-	let objTask = {description: "", deadline: "", data: ""};
-
-	objTask.description = item;
-	objTask.deadline    = deadline;
-    objTask.data        = data;
+	let objTask = {
+        description,
+        deadline,
+        data
+    };
 
 	arrayTasks.push(objTask);
-	window.localStorage.setItem('tasks', JSON.stringify(arrayTasks));
+    storage('tasks', arrayTasks);
 }
 
 function recuperarDadosLocalStorage(){
