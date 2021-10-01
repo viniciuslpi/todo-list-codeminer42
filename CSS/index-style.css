@@ -48,7 +48,7 @@ table{
 }
 
 #table-style th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5){
-    width: 30%;
+    width: 22%;
     margin: 0 30px;
 }
 
@@ -71,7 +71,7 @@ table{
 }
 
 #lista td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
-    width: 30%;
+    width: 20%;
     margin: 0 30px;
 }
 
@@ -104,7 +104,6 @@ table{
 #lista input[type='text'] {
     border: none;
     width: 80%;
-
 }
 
 input[type='button']{
@@ -135,6 +134,10 @@ input[type=checkbox]:checked + #lista td:nth-child(2){
     border: none;
     margin-right: 10px;
     margin-bottom: 20px;
+}
+
+.todo__new-item input[type='date']{
+    padding: 13px 15px;
 }
 
 .todo__new-item button{
