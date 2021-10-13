@@ -6,12 +6,12 @@ function adicionarItem() {
     let data        = geradorData();
     let tags        = document.getElementById('tag').value;
     tags            = tratamentoTags(tags);
-
+    let status      = '';
 
     if(item === '' || deadline.value == ''){
         alert('Fill in all fields that are blank');
     }else{       
-        salvarDadosLocalStorage(item, deadline, data, tags);
+        salvarDadosLocalStorage(status, item, deadline, data, tags);
         limpaLista();
     }  
 }
