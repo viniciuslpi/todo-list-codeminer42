@@ -11,9 +11,8 @@ function adicionarItem() {
     if(item === '' || deadline.value == ''){
         alert('Fill in all fields that are blank');
     }else{       
-        salvarDadosLocalStorage(item, deadline, data, tags);
+        salvarDadosLocalStorage(status, item, deadline, data, tags);
         limpaLista();
-        location.reload();
     }  
 }
 
@@ -27,6 +26,8 @@ function limpaLista(){
     document.getElementById('item').value='';
     document.getElementById('deadline').value='';
     document.getElementById('tag').value='';
+    location.reload();
+
 }
 
 function geradorData(){
@@ -39,6 +40,13 @@ function geradorData(){
     return `${anoF}-${mesF}-${diaF}`;
 }
 
+function atualizarStatus(item){
+    let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
+    arrayTasks[item].status = arrayTasks[item].status === '' ? 'checked' : '';
+    storage('tasks', arrayTasks);
+    
+}
+
 function deletarItem(item){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
    
@@ -48,7 +56,6 @@ function deletarItem(item){
                 arrayTasks.splice(i, 1); 
             }
         }
-        
         location.reload();
         storage('tasks', arrayTasks);
     }    
@@ -68,12 +75,13 @@ function deletarTodos(){
     storage('tasks', arrayTasks);
 }    
 
-function salvarDadosLocalStorage(description, deadline, data, tags){
+function salvarDadosLocalStorage(status, description, deadline, data, tags){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
 
 	if(!arrayTasks) arrayTasks = []; //Inicializando o vetor se ele vier vazio do local Storage
 
 	let objTask = {
+        status,
         description,
         deadline,
         data, 
@@ -86,7 +94,7 @@ function salvarDadosLocalStorage(description, deadline, data, tags){
 
 function recuperarDadosLocalStorage(){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
-        for(task of arrayTasks){
+        for(i in arrayTasks){
             let lista = document.getElementById("lista");
             let row   = lista.insertRow(0);
             let cell1 = row.insertCell(0);
@@ -96,80 +104,13 @@ function recuperarDadosLocalStorage(){
             let cell5 = row.insertCell(4);
             let cell6 = row.insertCell(5);
 
-    
-            cell1.innerHTML = "<input type='checkbox'>";
-            cell2.innerHTML = task.description;
-            cell3.innerHTML = task.tags;
-            cell4.innerHTML = task.deadline;
-            cell5.innerHTML = task.data;
-            cell6.innerHTML = '<input type="button" value="X" onclick="deletarItem(\'' + task.description + '\')"/>';
+            cell1.innerHTML = `<input type='checkbox' ${arrayTasks[i].status} onclick="atualizarStatus(${i})">`;
+            cell2.innerHTML = arrayTasks[i].description;
+            cell3.innerHTML = arrayTasks[i].tags;
+            cell4.innerHTML = arrayTasks[i].deadline;
+            cell5.innerHTML = arrayTasks[i].data;
+            cell6.innerHTML = '<input type="button" value="×" onclick="deletarItem(\'' + arrayTasks[i].description + '\')"/>';
         }
 }
 
 recuperarDadosLocalStorage();
-
-
-
-/*
-let tags = [];
-let tagContainer = document.querySelector('.tag-container');
-let input = tagContainer.querySelector('input');
-
-input.addEventListener('keyup', addTags);
-
-
-
-function addTags(event){
-   
-    const keyPressedIsEnter = event.key == 'Enter'
-    if(keyPressedIsEnter){
-        input.value.split(',').forEach( tag => {
-            if(tag){
-                tags.push(tag.trim())
-            }
-        })
-
-        updateTags();
-        input.value = '';
-    }
-}
-
-
-function updateTags(){
-    clearTags();
-    tags.slice().reverse().forEach( tag => {
-        tagContainer.prepend(createTag(tag))
-    })
-}
-
-function createTag(tag){
-    const div = document.createElement('div')
-    div.classList.add('tag')
-
-    const span = document.createElement('span')
-    span.innerHTML = tag
-    div.append(span)
-
-    const i = document.createElement('i');
-    i.classList.add('close');
-    i.setAttribute('data-id', tag);
-    i.onclick = removeTag
-    span.append(i)
-    return div;
-}
-
-function removeTag(event){
-    const buttonX  = event.currentTarget
-    const id = buttonX.dataset.id
-    const index = tags.indexOf(id)
-    tags.splice(index, 1)
-
-    updateTags();
-}
-
-function clearTags(){
-    tagContainer.querySelectorAll('.tag').forEach( tagElement => tagElement.remove())
-}
-*/
-
-
