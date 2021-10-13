@@ -11,7 +11,7 @@ function adicionarItem() {
     if(item === '' || deadline.value == ''){
         alert('Fill in all fields that are blank');
     }else{       
-        salvarDadosLocalStorage(status, item, deadline, data, tags);
+        salvarDadosLocalStorage(item, deadline, data, tags);
         limpaLista();
     }  
 }
