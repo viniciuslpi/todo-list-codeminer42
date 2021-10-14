@@ -1,3 +1,4 @@
 # ToDo List Imersão Codeminer42
 
-Primeiro desafio Imersão Codeminer42
+First challenge of Imersão Codeminer42 - To Do List using JavaScript, HTML and CSS.
+
