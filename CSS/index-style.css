@@ -52,6 +52,7 @@ table{
     margin: 0 30px;
 }
 
+
 #lista{
     width: 100%;
 }
@@ -73,6 +74,10 @@ table{
 #lista td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
     width: 20%;
     margin: 0 30px;
+}
+
+#lista td:nth-child(3){
+   
 }
 
 #list-title tr{
@@ -160,7 +165,11 @@ input[type=checkbox]:checked + #lista td:nth-child(2){
     font-weight: bolder;
 }
 
-
+.close{
+    background-color: red;
+    border-radius: 30px;
+    padding: 5px 10px;
+}
 
 
 

@@ -17,8 +17,8 @@ function adicionarItem() {
 }
 
 function tratamentoTags(tags){
-    tags.split(/\s*,\s*/);
-	arrayTags.push(tags.trim());
+    tags = tags.split(/\s*,\s*/).map(function(a){return a.trim()});
+	arrayTags.push(tags);
     return arrayTags;
 }
 
