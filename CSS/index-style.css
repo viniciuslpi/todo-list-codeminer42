@@ -68,7 +68,7 @@ table{
 }
 
 #lista tr:hover{
-    background-color: teal;
+    opacity: .6;
 }
 
 #lista td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
@@ -166,9 +166,12 @@ input[type=checkbox]:checked + #lista td:nth-child(2){
 }
 
 .close{
-    background-color: red;
+    background-color:rgb(2, 59, 59);
     border-radius: 30px;
     padding: 5px 10px;
+    line-height: 2;
+    text-transform: lowercase;
+    font-style: normal;
 }
 
 

@@ -5,21 +5,20 @@ function adicionarItem() {
     let deadline    = document.getElementById("deadline").value;
     let data        = geradorData();
     let tags        = document.getElementById('tag').value;
-    tags            = tratamentoTags(tags);
+    tagsFormatadas            = tratamentoTags(tags);
     let status      = '';
 
     if(item === '' || deadline.value == ''){
         alert('Fill in all fields that are blank');
     }else{       
-        salvarDadosLocalStorage(status, item, deadline, data, tags);
+        salvarDadosLocalStorage(status, item, deadline, data, tagsFormatadas);
         limpaLista();
     }  
 }
 
 function tratamentoTags(tags){
-    tags = tags.split(/\s*,\s*/).map(function(a){return a.trim()});
-	arrayTags.push(tags);
-    return arrayTags;
+    let temp = tags.split(/\s*,\s*/).map(function(a){return a.trim()});
+    return temp;
 }
 
 function limpaLista(){
@@ -87,14 +86,16 @@ function salvarDadosLocalStorage(status, description, deadline, data, tags){
         data, 
         tags
     };
-
-	arrayTasks.push(objTask);
+    
+    arrayTasks.push(objTask);
     storage('tasks', arrayTasks);
 }
 
 function recuperarDadosLocalStorage(){
 	let arrayTasks = JSON.parse(window.localStorage.getItem('tasks'));
         for(i in arrayTasks){
+            let temp = atualizarTags(arrayTasks[i].tags)
+            
             let lista = document.getElementById("lista");
             let row   = lista.insertRow(0);
             let cell1 = row.insertCell(0);
@@ -106,11 +107,18 @@ function recuperarDadosLocalStorage(){
 
             cell1.innerHTML = `<input type='checkbox' ${arrayTasks[i].status} onclick="atualizarStatus(${i})">`;
             cell2.innerHTML = arrayTasks[i].description;
-            cell3.innerHTML = arrayTasks[i].tags;
+            cell3.innerHTML = temp;
             cell4.innerHTML = arrayTasks[i].deadline;
             cell5.innerHTML = arrayTasks[i].data;
             cell6.innerHTML = '<input type="button" value="×" onclick="deletarItem(\'' + arrayTasks[i].description + '\')"/>';
         }
+}
+
+function atualizarTags(tags){
+    soma = tags.map((e) => {
+        return `<i class='close'>${e}</i>`
+    });
+    return soma.join(' ');
 }
 
 recuperarDadosLocalStorage();
