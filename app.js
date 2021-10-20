@@ -110,15 +110,16 @@ function recuperarDadosLocalStorage(){
             cell3.innerHTML = temp;
             cell4.innerHTML = arrayTasks[i].deadline;
             cell5.innerHTML = arrayTasks[i].data;
-            cell6.innerHTML = '<input type="button" value="×" onclick="deletarItem(\'' + arrayTasks[i].description + '\')"/>';
+            cell6.innerHTML = '<input type="button" value="×" class="btn-delete" onclick="deletarItem(\'' + arrayTasks[i].description + '\')"/>';
         }
 }
 
 function atualizarTags(tags){
     soma = tags.map((e) => {
-        return `<i class='close'>${e}</i>`
+        return `<i class='tag'>${e}</i>`
     });
     return soma.join(' ');
 }
 
 recuperarDadosLocalStorage();
+

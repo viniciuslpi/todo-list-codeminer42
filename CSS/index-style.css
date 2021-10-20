@@ -47,45 +47,78 @@ table{
     margin-bottom: 80px;
 }
 
-#table-style th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5){
-    width: 22%;
-    margin: 0 30px;
+.list-title{
+    margin: 0 10px;
 }
 
+#table-style th:nth-child(1){
+    width: 5%;
+}
+#table-style th:nth-child(6){
+    width: 5%;
+}
+
+#table-style th:nth-child(2){
+    width: 38%;
+    margin: 0 ;
+}
+
+#table-style th:nth-child(3){
+    width: 20%;
+    margin: 0; 
+}
+
+#table-style th:nth-child(4), th:nth-child(5){
+    width: 10%;
+    margin: 0 ;
+}
 
 #lista{
-    width: 100%;
+    margin: 10px 0;
+    text-align: center;
 }
 
 #lista tr{
-    display: flex;
-    text-align: center;
-    align-items: center;
-    margin: 10px auto;
-    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+#lista tbody tr{
     border-radius: 20px;
     background-color: #19202b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px 10px;
 }
 
-#lista tr:hover{
-    opacity: .6;
+#lista tbody tr:hover{
+    background-color: #1a273b;
 }
 
-#lista td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
-    width: 20%;
-    margin: 0 30px;
+#lista td:nth-child(1){
+    width: 5%;
+}
+#lista td:nth-child(6){
+    width: 5%;
+}
+
+#lista td:nth-child(2){
+    width: 40%;
+    margin: 0 ;
 }
 
 #lista td:nth-child(3){
-   
+    width: 20%;
+    margin: 0; 
 }
 
-#list-title tr{
-    border: red solid 2px;
-    display: flex;
-    justify-content: space-between;
-}   
-
+#lista td:nth-child(4), td:nth-child(5){
+    width: 10%;
+    margin: 0 ;
+}
+ 
 .action-button{
     display: flex;
     align-items: center;
@@ -100,6 +133,7 @@ table{
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .action-button:hover{
@@ -115,15 +149,17 @@ input[type='button']{
     width: 30px;
     height: 30px;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
 }
 
 input[type=checkbox]{
     width: 25px;
     height: 25px;
-}
-
-input[type=checkbox]:checked + #lista td:nth-child(2){
-    text-decoration: line-through;
+    cursor: pointer;
 }
 
 .todo__new-item{
@@ -163,16 +199,28 @@ input[type=checkbox]:checked + #lista td:nth-child(2){
     height: 45px;
     border-radius: 15px;
     font-weight: bolder;
+    border: none;
 }
 
-.close{
-    background-color:rgb(2, 59, 59);
+.btn-delete{
+    font-size: 1.4em;
+    border: none;
+}
+
+.tag{
+    background-color: rgb(2, 59, 59);
     border-radius: 30px;
     padding: 5px 10px;
     line-height: 2;
     text-transform: lowercase;
     font-style: normal;
 }
+
+
+.tag:hover{
+    border: #c9d1d9 solid 1px;
+}
+
 
 
 
