@@ -5,16 +5,33 @@ function adicionarItem() {
     let deadline    = document.getElementById("deadline").value;
     let data        = geradorData();
     let tags        = document.getElementById('tag').value;
-    tagsFormatadas            = tratamentoTags(tags);
+    tagsFormatadas  = tratamentoTags(tags);
     let status      = '';
 
-    if(item === '' || deadline.value == ''){
-        alert('Fill in all fields that are blank');
-    }else{       
+    if(tratamentoInput(item, deadline)) {
         salvarDadosLocalStorage(status, item, deadline, data, tagsFormatadas);
         limpaLista();
-    }  
+    }    0
 }
+
+function tratamentoInput(input1, input2) {
+    if(input1 == '' && input2 == ''){
+        alert('Fill in all fields that are blank');
+    } else if (input1 == '') {
+        alert('The tasks field are empty.');
+    } else if(input2 == '') {
+        alert('The deadline field are empty.');
+    } else {
+        return true;
+    }
+}
+
+document.querySelector('.todo__new-item').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        document.querySelector(".add-btn").click();
+    }
+});
 
 function tratamentoTags(tags){
     let temp = tags.split(/\s*,\s*/).map(function(a){return a.trim()});
